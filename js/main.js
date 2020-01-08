@@ -1,4 +1,5 @@
-function User({ email, name, option, message }) {
+function User({email, name, option, message }) {
+  this.id = uuidv4();
   this.email = email;
   this.name = name;
   this.option = option;
@@ -6,15 +7,12 @@ function User({ email, name, option, message }) {
   return this;
 }
 
-
-
-
-
-
-
-
-
-
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 
 function validateForm() {
@@ -24,7 +22,7 @@ function validateForm() {
   let name = document.forms['myForm']['firstname'].value;
   let option = document.forms['myForm']['droplist'].value;
   let message = document.forms['myForm']['text'].value;
-  let newUser = new User({ email, name, option, message });
+  let newUser = new User({email, name, option, message });
   if (email.length !== 0 && name.length !== 0) {
     console.log(newUser);
     //let jsonUser = JSON.stringify(newUser);
